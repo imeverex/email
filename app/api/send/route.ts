@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
       ...(bccAddresses?.length ? { bcc: bccAddresses } : {}),
     }
 
-    const { data, error } = await resend.emails.send(emailPayload as Parameters<typeof resend.emails.send>[0])
+    const { data, error } = await resend.emails.send(emailPayload as never)
 
     if (error) {
       console.error('Resend error:', error)
