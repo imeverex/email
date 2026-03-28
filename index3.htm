@@ -1,0 +1,43 @@
+<?php
+$to = "recipient@example.com";
+$subject = "HTML Email from PHP";
+
+// Message can contain HTML tags
+$message = "
+<html>
+<head>
+<title>HTML email</title>
+</head>
+<body>
+<h1>Hello!</h1>
+<p>This is an <b>HTML</b> email sent using PHP's mail() function.</p>
+<table>
+<tr>
+<th>Firstname</th>
+<th>Lastname</th>
+</tr>
+<tr>
+<td>John</td>
+<td>Doe</td>
+</tr>
+</table>
+</body>
+</html>
+";
+
+// To send HTML mail, the Content-type header must be set
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+// Additional headers
+$headers .= 'From: Sender Name <gov.ab.ca>' . "\r\n";
+$headers .= 'Cc: mycc@example.com' . "\r\n";
+$headers .= 'Bcc: mybcc@example.com' . "\r\n";
+
+// Send the email
+if (mail($to, $subject, $message, $headers)) {
+    echo "Email sent successfully.";
+} else {
+    echo "Failed to send email.";
+}
+?>
